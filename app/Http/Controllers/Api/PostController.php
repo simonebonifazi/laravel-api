@@ -14,8 +14,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-       $posts = Post::where('is_published', 1)->get();
+    {                   //to fix is_published on controller
+       $posts = Post::where('is_published', 1)->orderBy('created_at', 'DESC')->get();
        return response()->json($posts);
     }
 
