@@ -1,20 +1,20 @@
 <template>
     <div class="content">
-       <PlaceHolder :placeholder="placeholder"/>
+       <HeaderApp :title="title"/>
     </div>
 </template>
 
 <script>
-    import PlaceHolder from './PlaceHolder';
+    import HeaderApp from './HeaderApp';
     export default {
         name: "App",
     data() {
         return {
-            placeholder: "Work in progress",
+            title: "Boolpress",
         };
     },
         components: {
-            PlaceHolder,
+            HeaderApp,
         },
     };
 </script>
