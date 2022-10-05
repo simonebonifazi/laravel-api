@@ -15,8 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', function () {
-
-    $posts = Post::all();
-    return response()->json(compact('posts'));
-});
+Route::get('/posts', 'Api\PostController@index' );
