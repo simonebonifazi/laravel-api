@@ -2,8 +2,15 @@
   <section id="posts-list">
     <h2> Posts</h2>
     <LoaderApp v-if="isLoading"/>
+    
+    <div class="alert alert-danger alert-dismissible fade show"
+    role="alert" v-else-if="error">
+    <p> {{error}} </p>
+    <button type="button" class="close" @click="error = null">
+        <span aria-hidden="true"> &times;</span>
+    </button>
+    </div>
     <div v-else>
-
         <div v-if="posts.length" class="d-flex flex-row flex-wrap">
             <PostCard v-for="post in posts" :key="post.id" :post="post"/>  
         </div>
@@ -25,6 +32,7 @@ data(){
     return {
         posts: [],
         isLoading: false,
+        error: null,
     };
 },
 methods: {
@@ -34,7 +42,7 @@ methods: {
         .then( res => {
             this.posts = res.data;
         }).catch((err) => {
-            //to fix error
+            this.error = "Attenzione! C'è stato un errore nel fetch dei post"
             console.error(err);
         }).then(() => {
             this.isLoading = false;

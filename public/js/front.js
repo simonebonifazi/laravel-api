@@ -2013,7 +2013,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       posts: [],
-      isLoading: false
+      isLoading: false,
+      error: null
     };
   },
   methods: {
@@ -2024,7 +2025,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('http://localhost:8000/api/posts').then(function (res) {
         _this.posts = res.data;
       })["catch"](function (err) {
-        //to fix error
+        _this.error = "Attenzione! C'è stato un errore nel fetch dei post";
         console.error(err);
       }).then(function () {
         _this.isLoading = false;
@@ -2238,7 +2239,26 @@ var render = function render() {
     attrs: {
       id: "posts-list"
     }
-  }, [_c("h2", [_vm._v(" Posts")]), _vm._v(" "), _vm.isLoading ? _c("LoaderApp") : _c("div", [_vm.posts.length ? _c("div", {
+  }, [_c("h2", [_vm._v(" Posts")]), _vm._v(" "), _vm.isLoading ? _c("LoaderApp") : _vm.error ? _c("div", {
+    staticClass: "alert alert-danger alert-dismissible fade show",
+    attrs: {
+      role: "alert"
+    }
+  }, [_c("p", [_vm._v(" " + _vm._s(_vm.error) + " ")]), _vm._v(" "), _c("button", {
+    staticClass: "close",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        _vm.error = null;
+      }
+    }
+  }, [_c("span", {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v(" ×")])])]) : _c("div", [_vm.posts.length ? _c("div", {
     staticClass: "d-flex flex-row flex-wrap"
   }, _vm._l(_vm.posts, function (post) {
     return _c("PostCard", {
