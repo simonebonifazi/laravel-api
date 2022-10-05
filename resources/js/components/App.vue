@@ -1,11 +1,16 @@
 <template>
     <div class="content">
        <HeaderApp :title="title"/>
+       <main class="container my-4">
+       <PostsList :posts="posts" />
+       </main>
     </div>
 </template>
 
 <script>
     import HeaderApp from './HeaderApp';
+    import PostsList from './posts/PostsList';
+   
     export default {
         name: "App",
     data() {
@@ -15,6 +20,7 @@
     },
         components: {
             HeaderApp,
+            PostsList,
         },
     };
 </script>
