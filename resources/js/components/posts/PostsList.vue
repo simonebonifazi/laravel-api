@@ -1,7 +1,7 @@
 <template>
   <section id="posts-list">
     <h2> Posts</h2>
-    <div v-if="posts.length">
+    <div v-if="posts.length" class="d-flex flex-row flex-wrap">
         <PostCard v-for="post in posts" :key="post.id" :post="post"/>  
     </div>
     <h4 v-else> Nessun post ...</h4>

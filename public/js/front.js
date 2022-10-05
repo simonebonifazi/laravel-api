@@ -1958,6 +1958,19 @@ __webpack_require__.r(__webpack_exports__);
   name: "PostCard",
   props: {
     post: Object
+  },
+  computed: {
+    updatedAt: function updatedAt() {
+      var postDate = new Date(this.post.updated_at);
+      var day = postDate.getDate();
+      var month = postDate.getMonth() + 1; //poichè js conta da 0!
+
+      var year = postDate.getFullYear(); //formatto in stile italiano
+
+      if (day < 10) day = "0" + day;
+      if (month < 10) month = "0" + month;
+      return "".concat(day, "/").concat(month, "/").concat(year);
+    }
   }
 });
 
@@ -2051,7 +2064,9 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("header", [_c("nav", {
+  return _c("header", {
+    staticClass: "container"
+  }, [_c("nav", {
     staticClass: "navbar navbar-expand-lg navbar-dark bg-dark"
   }, [_c("a", {
     staticClass: "navbar-brand",
@@ -2115,8 +2130,13 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("div", {
-    staticClass: "card"
+  return _c("div", {
+    staticClass: "mx-3"
+  }, [_c("div", {
+    staticClass: "card my-4",
+    staticStyle: {
+      width: "18rem"
+    }
   }, [_c("img", {
     staticClass: "card-img-top",
     attrs: {
@@ -2133,7 +2153,7 @@ var render = function render() {
     staticClass: "card-footer"
   }, [_c("small", {
     staticClass: "text-muted"
-  }, [_vm._v(_vm._s(_vm.post.updated_at))])])])]);
+  }, [_vm._v(" Ultima modifica il: " + _vm._s(_vm.updatedAt))])])])]);
 };
 
 var staticRenderFns = [];
@@ -2161,7 +2181,9 @@ var render = function render() {
     attrs: {
       id: "posts-list"
     }
-  }, [_c("h2", [_vm._v(" Posts")]), _vm._v(" "), _vm.posts.length ? _c("div", _vm._l(_vm.posts, function (post) {
+  }, [_c("h2", [_vm._v(" Posts")]), _vm._v(" "), _vm.posts.length ? _c("div", {
+    staticClass: "d-flex flex-row flex-wrap"
+  }, _vm._l(_vm.posts, function (post) {
     return _c("PostCard", {
       key: post.id,
       attrs: {
