@@ -2,7 +2,8 @@
     <div class="content">
        <HeaderApp :title="title"/>
        <main class="container my-4">
-       <PostsList :posts="posts" />
+       <PostsList />
+       
        </main>
     </div>
 </template>
