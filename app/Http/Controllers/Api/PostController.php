@@ -15,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {                   //to fix is_published on controller
-       $posts = Post::where('is_published', 1)->orderBy('created_at', 'DESC')->get();
+       $posts = Post::where('is_published', 1)
+       ->orderBy('created_at', 'DESC')
+       ->with(['category', 'tags', 'user'])
+       ->get();
        return response()->json($posts);
     }
 
