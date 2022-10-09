@@ -24,7 +24,7 @@ const router = new VueRouter({
             path: '/contacts', component: ContactsPage, name: 'contacts'
         },
         {
-            path: '/posts/:id', component: SinglePostPage, name: 'post-detail'
+            path: '/posts/:slug', component: SinglePostPage, name: 'post-detail'
         },
         {
             path: '*', component: NotFoundPage, name: 'not_found'

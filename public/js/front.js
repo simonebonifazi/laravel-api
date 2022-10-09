@@ -2048,7 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.isLoading = true;
-      axios.get("http://localhost:8000/api/posts/" + this.$route.params.id).then(function (res) {
+      axios.get("http://localhost:8000/api/posts/" + this.$route.params.slug).then(function (res) {
         _this.post = res.data;
       })["catch"](function (err) {
         console.error(err);
@@ -2506,7 +2506,7 @@ var render = function render() {
       to: {
         name: "post-detail",
         params: {
-          id: _vm.post.id
+          slug: _vm.post.slug
         }
       }
     }
@@ -54820,7 +54820,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_AboutUsPage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/pages/AboutUsPage.vue */ "./resources/js/components/pages/AboutUsPage.vue");
 /* harmony import */ var _components_pages_ContactsPage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/pages/ContactsPage.vue */ "./resources/js/components/pages/ContactsPage.vue");
 /* harmony import */ var _components_pages_NotFoundPage_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/pages/NotFoundPage.vue */ "./resources/js/components/pages/NotFoundPage.vue");
-/* harmony import */ var _components_pages_SinglePostPage_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/pages/SinglePostPage.vue */ "./resources/js/components/pages/SinglePostPage.vue");
+/* harmony import */ var _components_pages_SinglePostPage_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/pages/SinglePostPage.vue */ "./resources/js/components/pages/SinglePostPage.vue");
 
 
 
@@ -54845,8 +54845,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _components_pages_ContactsPage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     name: 'contacts'
   }, {
-    path: '/posts/:id',
-    component: _components_pages_SinglePostPage_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    path: '/posts/:slug',
+    component: _components_pages_SinglePostPage_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     name: 'post-detail'
   }, {
     path: '*',

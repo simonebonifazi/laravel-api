@@ -20,7 +20,7 @@ export default {
     methods: {
         fetchPost() {
             this.isLoading = true;
-            axios.get("http://localhost:8000/api/posts/" + this.$route.params.id)
+            axios.get("http://localhost:8000/api/posts/" + this.$route.params.slug)
                 .then(res => {
                 this.post = res.data;
             })
