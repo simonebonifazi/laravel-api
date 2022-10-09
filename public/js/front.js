@@ -2032,7 +2032,28 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SinglePostPage'
+  name: 'SinglePostPage',
+  data: function data() {
+    return {
+      post: null
+    };
+  },
+  methods: {
+    fetchPost: function fetchPost() {
+      var _this = this;
+
+      axios.get('http://localhost:8000/api/posts/1').then(function (res) {
+        _this.post = res.data;
+      })["catch"](function (err) {
+        console.error(err);
+      }).then(function () {
+        console.log('chiamata conclusa');
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.fetchPost();
+  }
 });
 
 /***/ }),
@@ -2414,14 +2435,19 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
+  return _vm._m(0);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
   return _c("div", {
     attrs: {
       id: "single-post"
     }
-  });
-};
-
-var staticRenderFns = [];
+  }, [_c("h2", [_vm._v("Dettaglio post: ")])]);
+}];
 render._withStripped = true;
 
 
