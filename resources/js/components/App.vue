@@ -2,7 +2,7 @@
     <div class="content">
        <HeaderApp :title="title"/>
        <main class="container my-4">
-       <PostsList />
+       <HomePage />
        
        </main>
     </div>
@@ -10,7 +10,7 @@
 
 <script>
     import HeaderApp from './HeaderApp';
-    import PostsList from './posts/PostsList';
+import HomePage from './pages/HomePage';
    
     export default {
         name: "App",
@@ -20,8 +20,8 @@
         };
     },
         components: {
-            HeaderApp,
-            PostsList,
-        },
+    HeaderApp,
+    HomePage
+},
     };
 </script>
