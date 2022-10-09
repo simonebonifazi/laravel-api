@@ -8,7 +8,7 @@
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <small class="text-muted"> Ultima modifica il: {{ updatedAt }}</small>
-                <router-link :to="{ name: 'home'}" class="btn btn-sm btn-info"> Vedi...</router-link>
+                <router-link :to="{ name: 'post-detail', params: { id: post.id}}" class="btn btn-sm btn-info"> Vedi...</router-link>
             </div>
         </div>          
     </div>

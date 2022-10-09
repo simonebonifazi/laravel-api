@@ -2469,7 +2469,10 @@ var render = function render() {
     staticClass: "btn btn-sm btn-info",
     attrs: {
       to: {
-        name: "home"
+        name: "post-detail",
+        params: {
+          id: _vm.post.id
+        }
       }
     }
   }, [_vm._v(" Vedi...")])], 1)])]);
