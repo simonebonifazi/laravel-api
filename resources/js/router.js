@@ -13,16 +13,16 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/', component: HomePage
+            path: '/', component: HomePage, name: 'home'
         },
         {
-            path: '/about', component: AboutUsPage
+            path: '/about', component: AboutUsPage, name: 'about'
         },
         {
-            path: '/contacts', component: ContactsPage
+            path: '/contacts', component: ContactsPage, name: 'contacts'
         },
         {
-            path: '*', component: NotFoundPage
+            path: '*', component: NotFoundPage, name: 'not_found'
         },
      
     ]
