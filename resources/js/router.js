@@ -11,6 +11,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
     mode: 'history',
+    linkExactActiveClass: 'active',
     routes: [
         {
             path: '/', component: HomePage, name: 'home'
