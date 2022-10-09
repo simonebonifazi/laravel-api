@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import HomePage from '.components/pages/HomePage.vue';
-import AboutUsPage from '.components/pages/AboutUsPage.vue';
-import ContactsPage from '.components/pages/ContactsPage.vue';
+import HomePage from './components/pages/HomePage.vue';
+import AboutUsPage from './components/pages/AboutUsPage.vue';
+import ContactsPage from './components/pages/ContactsPage.vue';
 
 
 Vue.use(VueRouter)
 
-const routes = new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     routes: [
         {
@@ -24,4 +24,4 @@ const routes = new VueRouter({
     ]
 })
 
-export default routes;
+export default router;
