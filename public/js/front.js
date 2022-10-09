@@ -2031,28 +2031,38 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _posts_PostCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../posts/PostCard.vue */ "./resources/js/components/posts/PostCard.vue");
+/* harmony import */ var _LoaderApp_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../LoaderApp.vue */ "./resources/js/components/LoaderApp.vue");
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'SinglePostPage',
+  name: "SinglePostPage",
   data: function data() {
     return {
-      post: null
+      post: null,
+      isLoading: false
     };
   },
   methods: {
     fetchPost: function fetchPost() {
       var _this = this;
 
-      axios.get('http://localhost:8000/api/posts/1').then(function (res) {
+      this.isLoading = true;
+      axios.get("http://localhost:8000/api/posts/" + this.$route.params.id).then(function (res) {
         _this.post = res.data;
       })["catch"](function (err) {
         console.error(err);
       }).then(function () {
-        console.log('chiamata conclusa');
+        _this.isLoading = false;
       });
     }
   },
   mounted: function mounted() {
     this.fetchPost();
+  },
+  components: {
+    PostCard: _posts_PostCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    LoaderApp: _LoaderApp_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -2435,19 +2445,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("div", {
     attrs: {
       id: "single-post"
     }
-  }, [_c("h2", [_vm._v("Dettaglio post: ")])]);
-}];
+  }, [_c("h2", [_vm._v("Dettaglio post: ")]), _vm._v(" "), _vm.isLoading ? _c("LoaderApp") : !_vm.isLoading && _vm.post ? _c("PostCard", {
+    attrs: {
+      post: _vm.post
+    }
+  }) : _vm._e()], 1);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -6944,7 +6953,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.loader-overlay[data-v-20e82f9a]{\r\n    top:0;\r\n    right:0;\r\n    left:0;\r\n    bottom:0;\r\n    position: fixed;\r\n    z-index: 10;\r\n    background-color: rgb(230, 219, 219);\r\n\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\n}\n.spinner-border[data-v-20e82f9a]{\r\n    width: 175px;\r\n    height: 175px;\n}\r\n", ""]);
+exports.push([module.i, "\n.loader-overlay[data-v-20e82f9a]{\r\n    top:0;\r\n    right:0;\r\n    left:0;\r\n    bottom:0;\r\n    position: fixed;\r\n    z-index: 10;\r\n    background-color: rgb(179, 177, 177);\r\n\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\n}\n.spinner-border[data-v-20e82f9a]{\r\n    width: 175px;\r\n    height: 175px;\n}\r\n", ""]);
 
 // exports
 

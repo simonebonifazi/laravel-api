@@ -19,7 +19,7 @@ name: 'LoaderApp'
     bottom:0;
     position: fixed;
     z-index: 10;
-    background-color: rgb(230, 219, 219);
+    background-color: rgb(179, 177, 177);
 
     display: flex;
     align-items: center;
