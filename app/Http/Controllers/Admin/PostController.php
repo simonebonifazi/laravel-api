@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('updated_at', 'DESC')->orderBy('created_at', 'DESC')->orderBy('title')->paginate(10);
+        $posts = Post::orderBy('updated_at', 'DESC')->orderBy('created_at', 'DESC')->orderBy('title')->paginate(5);
 
                 $categories = Category::all();
         return view('admin.posts.index', compact('posts','categories'));
@@ -73,6 +73,8 @@ class PostController extends Controller
         $post->fill($data);
         //slug   
         $post->slug = Str::slug($post->title , '-');
+        //is_published
+        $post->is_published = array_key_exists('is_published', $data);
 
         $post->user_id = Auth::id(); 
             
@@ -146,6 +148,8 @@ class PostController extends Controller
         //slug in maniera alternativa, non ho ancora post per cui devo prendere il title dalla request
         $data['slug'] = Str::slug($request->title , '-'); // o anche( $data['title'], '-')
         
+        $post['is_published'] = array_key_exists('is_published', $data);        
+        
         $post->update($data);
 
        if(array_key_exists('tags', $data))
@@ -170,12 +174,23 @@ class PostController extends Controller
     public function destroy(Post $post )
     {
         //ulteriore controllo sul funzionamento di cascade
-        if(count($post->tags)) $post->tags->detach();
+        //if(count($post->tags)) $post->tags->detach();
 
         $post->delete();
 
         return redirect()->route('admin.posts.index')
         ->with('message', 'Il post è stato eliminato correttamente')
+        ->with('type', 'success');
+    }
+
+    public function toggle(Post $post)
+    {
+        $post->is_published = !$post->is_published;
+        $post->save();
+
+        $status = $post->is_published ? 'pubblicato' : 'nascosto';
+        return redirect()->route('admin.posts.index')
+        ->with('message', "Post $post->title $status con successo")
         ->with('type', 'success');
     }
 }

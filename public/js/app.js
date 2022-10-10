@@ -37288,6 +37288,22 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/admin/image_preview.js":
+/*!*********************************************!*\
+  !*** ./resources/js/admin/image_preview.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var placeholder = "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg";
+var preview = document.getElementById('preview');
+var imageField = document.getElementById('image');
+imageField.addEventListener('input', function () {
+  preview.src = imageField.value || placeholder;
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -37301,6 +37317,10 @@ module.exports = function(module) {
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./delete_confirmation */ "./resources/js/delete_confirmation.js");
+
+__webpack_require__(/*! ./admin/image_preview */ "./resources/js/admin/image_preview.js");
 
 /***/ }),
 
@@ -37346,6 +37366,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/delete_confirmation.js":
+/*!*********************************************!*\
+  !*** ./resources/js/delete_confirmation.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var deleteForms = document.querySelectorAll('.delete-form');
+deleteForms.forEach(function (form) {
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var hasConfirmed = confirm('Vuoi davvero eliminare il post?');
+    if (hasConfirmed) form.submit();
+  });
+});
 
 /***/ }),
 
