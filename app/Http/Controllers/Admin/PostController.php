@@ -51,9 +51,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-         $request->validate([
+        
+        $request->validate([
             'title' => 'required|string|min:1|max:50|unique:posts',
             'content' => 'required|string',
             'image' => 'nullable|url',
@@ -67,7 +66,8 @@ class PostController extends Controller
             'title.unique' => 'Attenzione, il titolo scelto è già associato ad un altro post',
             'tags.exists' => 'uno dei tag selezionati è non valido',
         ]);
-
+        $data = $request->all();
+        
         $post = new Post();
 
         $post->fill($data);
