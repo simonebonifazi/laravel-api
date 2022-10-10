@@ -19,12 +19,14 @@ Auth::routes();
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
+    Route::patch('/posts/{post}/toggle' , 'PostController@toggle')->name('posts.toggle');
     Route::resource('posts', 'PostController');
     Route::resource('categories', 'CategoryController');
+
     
     //per far si che laravel e blade continuino a gestire le rotte /admin/{any}     
     Route::get('/{any}', function(){
-        // e mostrare la page 404
+        // mostrando la page 404
         abort('404');
     })->where('any', '.*' );
 });

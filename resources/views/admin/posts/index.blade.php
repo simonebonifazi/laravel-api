@@ -18,6 +18,7 @@
             <th scope="col">#</th>
             <th scope="col">Titolo</th>
             <th scope="col">Slug</th>
+            <th scope="col">Stato:</th>
             <th scope="col">Categoria:</th>
             <th scope="col">Tag:</th>
             <th scope="col">Creato alle:</th>
@@ -31,6 +32,17 @@
             <th scope="row">{{ $post->id }}</th>
             <td>{{$post->title}}</td>
             <td>{{$post->slug}}</td>
+            <td>
+                <form action="{{ route('admin.posts.toggle' , $post) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <button class="btn-outline btn" type="submit">
+                        <i
+                            class="fa-2x fa-solid fa-toggle-{{$post->is_published ? 'on' : 'off'}}  text-{{$post->is_published ? 'success' : 'danger'}}">
+                        </i>
+                    </button>
+                </form>
+            </td>
             <td>
                 @if($post->category_id)
                 {{ $post->category->label }}
@@ -57,13 +69,12 @@
                     <i class="fa-solid fa-file-pen"></i> Modifica
                 </a>
 
-                <form action="{{ route('admin.posts.destroy', $post->id )}}" method="POST">
+                <form action="{{ route('admin.posts.destroy', $post->id )}}" method="POST" class="delete-form">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-outline-danger">
                         <i class="fa-solid fa-trash-can"></i> Elimina!
                     </button>
-                    <!-- TODO conferma utente  -->
                 </form>
 
             </td>
@@ -81,6 +92,11 @@
 
     </tbody>
 </table>
+<nav class="mt-4">
+    @if($posts->hasPages())
+    {{ $posts->links() }}
+    @endif
+</nav>
 <section id="posts-by-category">
     <h1> I tuoi post ordinati per Categoria</h1>
     <div class="row">
